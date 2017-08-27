@@ -1,77 +1,57 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
     Dimensions,
     StyleSheet,
     View,
     Text,
-    Image,
     ScrollView,
     TouchableHighlight
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const {width, height} = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 class Menu extends Component {
 
     render() {
         return (
-            <View style={styles.menu}>
-            <View style={styles.avatarContainer}>
-                <View style={styles.avatarImage}>
-                    <Image 
-                        style = {styles.avatar}
-                        source={require('../images/user.png')}
-                    />
-                    <Text style = {styles.text}>mario</Text>
+            <View >
+                <View>
+                    <View>
+                        <Text style={styles.siteMap}>Site Map</Text>
+                    </View>
                 </View>
-                <Icon 
-                    name="exchange"
-                    color = "white"
-                    size = {25}
-                />
+                <ScrollView style={styles.scrollContainer}>
+                    <View >
+                        <Text style={styles.textMenuOptions}>Home</Text>
+                        <Text style={styles.textMenuOptions}>Reimbursements</Text>
+                        <Text style={styles.textMenuOptions}>Prepaid</Text>
+                    </View>
+                </ScrollView>
             </View>
-            <ScrollView style={styles.scrollContainer}>
-                <View style={styles.textWithIcon}>
-                    <View style={styles.withIcon}>
-                        <Icon 
-                            style={styles.iconWithText}
-                            name="download"
-                            color="white"
-                            size={28}
-                        />
-                        <Text style={styles.text}>My Downloads</Text>
-                    </View>
-                    <Icon 
-                        style={styles.rightIcon}
-                        name="angle-right"
-                        color="white"
-                        size={25}
-                    />
-                </View>
-                <View style={styles.textWithIcon}>
-                    <View style={styles.withIcon}>
-                        <IonIcons 
-                            style={styles.iconWithText}
-                            name="md-checkmark"
-                            color="white"
-                            size={28}
-                        />
-                        <Text style={styles.text}>My List</Text>
-                    </View>
-                    <Icon 
-                        style={styles.rightIcon}
-                        name="angle-right"
-                        color="white"
-                        size={25}
-                    />
-                </View>
-                {this._renderItemsMenu()}
-            </ScrollView>
-        </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    siteMap: {
+        backgroundColor: '#C0C0C0',
+        height: 60,
+        fontSize: 25,
+        color: '#FFFFFF',
+        paddingVertical: 23,
+        paddingLeft: 5
+    },
+    scrollContainer: {
+        width: width / 2 + 59
+    },
+    textMenuOptions: {
+        color: '#808080',
+        fontSize: 20,
+        paddingVertical: 10,
+        paddingLeft: 5
+    }
+})
 
 export default Menu

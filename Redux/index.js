@@ -1,15 +1,38 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-// import SideMenu from 'react-native-side-menu';
-import Header from './components/header';
+import SideMenu from 'react-native-side-menu';
+import Header   from './components/header';
+import Menu     from './components/menu';
+import Content  from './components/content';
 
 class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isOpen: false
+        }
+    }
+
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
+    updateMenu(isOpen){
+        this.setState({isOpen})
+    }
+
     render() {
         return (
-            <View style={[{ flex: 1 } , styles.container]}>
-                <Header/>
-                <Text>Testing</Text>
+            <View style={[{ flex: 1 }, styles.container]}>
+                <SideMenu menu={<Menu/>} isOpen={this.state.isOpen} onChange={(isOpen) => this.updateMenu(isOpen)} >
+                    
+                    <Header toggle={this.toggle.bind(this)} />
+                    <Content/>
+                </SideMenu>
+
             </View>
         )
     }
